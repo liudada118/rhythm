@@ -17,11 +17,11 @@ export var Key = {
   },
   
   onKeydown: function(event) {
-    this._pressed[event.keyCode] = true;
+    this._pressed[event.key.toUpperCase()] = true;
   },
   
   onKeyup: function(event) {
-    delete this._pressed[event.keyCode];
+    delete this._pressed[event.key.toUpperCase()];
   }
 };
 

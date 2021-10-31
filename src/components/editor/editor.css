@@ -1,9 +1,0 @@
-.musicItems{
-    display: flex;
-}
-.musicItem{
-    background-color: #999;
-    width: 100px;
-    height: 5px;
-    margin: 5px  
-}
