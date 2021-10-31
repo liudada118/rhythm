@@ -1,0 +1,30 @@
+.testButton{
+    display: block;
+}
+.yogamat{
+    display: flex;
+}
+.yogamatbox{
+    width: 200px;
+    height: 200px;
+    border: 1px solid #fff;
+    background-color: #f0f0f0;
+}
+.yogaMat{
+    position: absolute;
+    right: 0;
+    top: 0
+}
+.bigBox{
+    position: relative;
+}
+.yogamatbox1{
+    width: 200px;
+    height: 200px;
+    border: 2px solid #fff;
+    position: absolute;
+    background-color: #f0f0f0;
+    top: 100px;
+    left: 100px;
+    transform: rotateZ(45deg);
+}
