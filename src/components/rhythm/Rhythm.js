@@ -438,39 +438,34 @@ export default function Dance() {
 
 		// 键盘击中动画
 		class Circle {
-			constructor(circle, flag, timerA) {
+			constructor(circle, flag) {
 				this.circle = circle
 				this.flag = flag
-				this.timerA = timerA
+				this.timerA = null
+				console.log(this.timerA)
 			}
 
 			// 变大动画
 			circleAni() {
-				console.log(1)
-				if (this.circle.opacity == 1) {
-					console.log(2)
+				if (this.circle.material.opacity == 1) {
+
 					this.circle.scale.x += 0.001
 					this.circle.scale.y += 0.001
 				}
 			}
 
+			// prefect 
 			showCircle() {
 				if (this.flag) {
-
 					this.circle.material.opacity = 1
 					textmesh.material.opacity = 1
 					this.flag = false
-
-
 					if (!this.timerA) {
 						this.timerA = setTimeout(() => {
-
 							textmesh.material.opacity = 0
 							this.circle.material.opacity = 0
 							this.circle.scale.x = 1
 							this.circle.scale.y = 1
-
-
 							clearTimeout(this.timerA)
 							this.timerA = null
 						}, 400)
@@ -478,6 +473,7 @@ export default function Dance() {
 				}
 			}
 
+			// miss
 			showText() {
 				if (this.flag) {
 					textmesh.material.opacity = 0
@@ -490,16 +486,6 @@ export default function Dance() {
 				}
 			}
 
-		}
-
-		if (goodFlagA) {
-			textmesh.material.opacity = 0
-
-			missmesh.material.opacity = 1
-			setTimeout(() => {
-				missmesh.material.opacity = 0
-
-			}, 200);
 		}
 
 		function draw() {
@@ -532,38 +518,15 @@ export default function Dance() {
 
 		}
 
+		let circleAni1 = new Circle(circle, goodFlagA, timerA)
+		let circleAni2 = new Circle(circle1, goodFlagB, timerB)
+		let circleAni3 = new Circle(circle2, goodFlagC, timerC)
+		let circleAni4 = new Circle(circle3, goodFlagD, timerD)
+
 		function run(ball) {
-			let circleAni1 = new Circle(circle, goodFlagA, timerA)
-			let circleAni2 = new Circle(circle1, goodFlagB, timerB)
-			let circleAni3 = new Circle(circle2, goodFlagC, timerC)
-			let circleAni4 = new Circle(circle3, goodFlagD, timerD)
+
 			// 案件  圆盘变大
 			boxArr.forEach((a, index) => {
-
-				// if (circle.material.opacity == 1) {
-				// 	// circle.scale.z += 0.001
-				// 	circle.scale.x += 0.001
-				// 	circle.scale.y += 0.001
-				// }
-
-				// if (circle1.material.opacity == 1) {
-				// 	// circle1.scale.z += 0.001
-				// 	circle1.scale.x += 0.001
-				// 	circle1.scale.y += 0.001
-				// }
-
-				// if (circle2.material.opacity == 1) {
-				// 	// circle2.scale.z += 0.001
-				// 	circle2.scale.x += 0.001
-				// 	circle2.scale.y += 0.001
-
-				// }
-				// if (circle3.material.opacity == 1) {
-				// 	// circle3.scale.z += 0.001
-				// 	circle3.scale.x += 0.001
-				// 	circle3.scale.y += 0.001
-
-				// }
 
 				circleAni1.circleAni()
 				circleAni2.circleAni()
@@ -581,35 +544,6 @@ export default function Dance() {
 
 					if (a.position.x == -64) {
 
-						// if (Key.isDown('A')) {
-
-						// 	if (goodFlagA) {
-
-						// 		circle.material.opacity = 1
-						// 		textmesh.material.opacity = 1
-						// 		goodFlagA = false
-
-
-						// 		if (!timerA) {
-						// 			timerA = setTimeout(() => {
-
-						// 				textmesh.material.opacity = 0
-						// 				circle.material.opacity = 0
-						// 				circle.scale.x = 1
-						// 				circle.scale.y = 1
-
-
-						// 				clearTimeout(timerA)
-						// 				timerA = null
-						// 			}, 400)
-						// 		}
-						// 	}
-
-
-
-						// } else {
-
-						// }
 
 						circleAni1.showCircle()
 					}
@@ -702,59 +636,27 @@ export default function Dance() {
 				else if (a.position.y < -27 - 6 * newSpeed && a.position.y >= -27 - 9 * newSpeed) {
 					if (a.position.x == -64) {
 
-						// if (goodFlagA) {
-						// 	textmesh.material.opacity = 0
-
-						// 	missmesh.material.opacity = 1
-						// 	setTimeout(() => {
-						// 		missmesh.material.opacity = 0
-
-						// 	}, 200);
-						// }
+						
 						circleAni1.showText()
 
 					}
 
 					if (a.position.x == -22) {
-						// if (goodFlagB) {
-						// 	textmesh.material.opacity = 0
-
-						// 	missmesh.material.opacity = 1
-						// 	setTimeout(() => {
-						// 		missmesh.material.opacity = 0
-
-						// 	}, 200);
-						// }
+						
 						circleAni2.showText()
 
 					}
 
 					if (a.position.x == 22) {
 
-						// if (goodFlagC) {
-						// 	textmesh.material.opacity = 0
-
-						// 	missmesh.material.opacity = 1
-						// 	setTimeout(() => {
-						// 		missmesh.material.opacity = 0
-
-						// 	}, 200);
-						// }
+					
 						circleAni3.showText()
 
 					}
 
 					if (a.position.x == 64) {
 
-						// if (goodFlagD) {
-						// 	textmesh.material.opacity = 0
-
-						// 	missmesh.material.opacity = 1
-						// 	setTimeout(() => {
-						// 		missmesh.material.opacity = 0
-
-						// 	}, 200);
-						// }
+						
 						circleAni4.showText()
 
 					}
