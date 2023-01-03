@@ -58,7 +58,7 @@ export default function Dance() {
 
 
 		const trackWidth = 600
-		const trackHeight = 130
+		const trackHeight = 100
 		const trackDepth = 10;
 		let paddleWidth = 100;
 		let paddleHeight = 200;
@@ -101,7 +101,7 @@ export default function Dance() {
 					{
 						// color: 0x666666,
 						transparent: true,
-						opacity: 0,
+						opacity: 1,
 						map: Ttexture
 					})
 			);
@@ -120,17 +120,18 @@ export default function Dance() {
 		// 传入trackNum，规定滑块在哪条赛道上生成 ,positionNum 规定滑块在赛道上的距离
 		function createBox(trackNum, positionNum) {
 			const newWidth = 12
-			const newHeight = 37
+			const newHeight = 30
 			const newDepth = 5
 			const startY = 297
 			const startZ = 301
 			newSpeed = 324 / 30 / 4
 			const Boxtexture = new THREE.TextureLoader().load("./images/box.png");
 			const trackArr = {
-				"1": -64,
-				"2": -22,
-				"3": 22,
-				"4": 64
+				"1": -72,
+				"2": -35,
+				"3": 0,
+				"4": 35,
+				"5": 72,
 			}
 
 			const ball4 = new THREE.Mesh(
@@ -206,7 +207,7 @@ export default function Dance() {
 			// set the scene size
 			var WIDTH = window.innerWidth,
 				HEIGHT = window.innerHeight;
-
+			
 			// set some camera attributes
 			var VIEW_ANGLE = 50,
 				ASPECT = WIDTH / HEIGHT,
@@ -230,6 +231,20 @@ export default function Dance() {
 			// add the camera to the scene
 			scene.add(camera);
 
+
+			createBox(1, 1) 
+			createBox(2, 1)
+			createBox(3, 1)
+			createBox(4, 1)
+			createBox(5, 1)
+
+			 createTrack(-215)
+			 createTrack(-104)
+			 createTrack(0)
+			 createTrack(104)
+			 createTrack(215)
+
+			
 			// set a default position for the camera
 			// not doing this somehow messes up shadow rendering
 			camera.position.z = 320;
@@ -299,11 +314,11 @@ export default function Dance() {
 			const Ttexture = new THREE.TextureLoader().load("./images/track.png");
 
 			// 创建四个格子点击反馈
-			track = createTrack(-200)
-			track1 = createTrack(-67)
-			track2 = createTrack(67)
-			track3 = createTrack(200)
-
+			track = createTrack(-215)
+			track1 = createTrack(-104)
+			track2 = createTrack(0)
+			track3 = createTrack(104)
+			track4 = createTrack(215)
 			// // add the sphere to the scene
 
 
@@ -543,35 +558,11 @@ export default function Dance() {
 					// 键盘
 
 					if (a.position.x == -64) {
-
-
 						circleAni1.showCircle()
 					}
 
 					if (a.position.x == -22) {
 						if (Key.isDown('S')) {
-
-
-							// if (goodFlagB) {
-
-							// 	circle1.material.opacity = 1
-							// 	textmesh.material.opacity = 1
-							// 	goodFlagB = false
-
-							// 	if (!timerB) {
-							// 		timerB = setTimeout(() => {
-
-							// 			textmesh.material.opacity = 0
-							// 			circle1.material.opacity = 0
-							// 			circle1.scale.x = 1
-							// 			circle1.scale.y = 1
-							// 			// goodFlag = tru
-
-							// 			clearTimeout(timerB)
-							// 			timerB = null
-							// 		}, 400)
-							// 	}
-							// }
 							circleAni2.showCircle()
 						} else {
 						}
@@ -579,55 +570,12 @@ export default function Dance() {
 
 					if (a.position.x == 22) {
 						if (Key.isDown('D')) {
-							// if (goodFlagC) {
-
-							// 	circle2.material.opacity = 1
-							// 	textmesh.material.opacity = 1
-							// 	goodFlagC = false
-
-							// 	if (!timerC) {
-
-							// 		timerC = setTimeout(() => {
-
-							// 			circle2.material.opacity = 0
-							// 			textmesh.material.opacity = 0
-							// 			circle2.scale.x = 1
-							// 			circle2.scale.y = 1
-
-
-							// 			clearTimeout(timerC)
-							// 			timerC = null
-							// 		}, 400)
-							// 	}
-							// }
 							circleAni3.showCircle()
 						} else {
 						}
 					}
-
-
 					if (a.position.x == 64) {
 						if (Key.isDown('F')) {
-							// if (goodFlagD) {
-
-							// 	circle3.material.opacity = 1
-							// 	textmesh.material.opacity = 1
-							// 	goodFlagD = false
-
-							// 	if (!timerD) {
-							// 		timerD = setTimeout(() => {
-
-							// 			textmesh.material.opacity = 0
-							// 			circle3.material.opacity = 0
-							// 			circle3.scale.x = 1
-							// 			circle3.scale.y = 1
-							// 			// goodFlag = tru
-
-							// 			clearTimeout(timerD)
-							// 			timerD = null
-							// 		}, 400)
-							// 	}
-							// }
 							circleAni4.showCircle()
 						} else {
 						}
