@@ -37,7 +37,7 @@ export default function Dance() {
 		let timerA, timerB, timerC, timerD, timerE
 		var circle, circle1, circle2, circle3, circle4
 
-		let bpm = [1, 2, 3, 4, 3, 2, 1, 2, 3, 4, 3, 2, 1, 2, 3, 4, 3, 2, 1, 2, 3, 4, 3, 2, 1, 2, 3, 4, 3, 2, 1]
+		let bpm = [1, 2, 3, [4,5], 3, [2,5], 1, 2, 3, 4, 3, 2, 1, 2, 3, 4, 3, 2, 1, 2, 3, 4, 3, 2, 1, 2, 3, 4, 3, 2, 1]
 
 		let bpmArr = [1, 59, 120, 180, 241, 301, 360, 421, 477, 536, 597, 657, 715, 775, 834, 896, 953, 1011, 1072, 1133, 1191, 1249, 1309, 1372, 1430, 1491, 1549, 1608, 1667, 1729, 1786, 1847]
 
@@ -57,8 +57,8 @@ export default function Dance() {
 		let relData = new Array(8).fill(0)
 
 
-		const trackWidth = 600
-		const trackHeight = 100
+		const trackWidth = 300
+		const trackHeight = 110
 		const trackDepth = 10;
 		let paddleWidth = 100;
 		let paddleHeight = 200;
@@ -99,9 +99,9 @@ export default function Dance() {
 
 				new THREE.MeshBasicMaterial(
 					{
-						// color: 0x666666,
+						// color: 0xaaaaaa,
 						transparent: true,
-						opacity: 1,
+						opacity: 0,
 						map: Ttexture
 					})
 			);
@@ -109,8 +109,8 @@ export default function Dance() {
 			track.receiveShadow = true;
 			track.castShadow = true;
 			track.position.x = position;
-			track.position.y = 80
-			track.position.z = 301 * Math.sqrt(3)
+			track.position.y = -20
+			track.position.z = 340 * Math.sqrt(3)
 			track.rotation.z = Math.PI / 2
 			track.rotation.x = -Math.PI * 1 / 3
 
@@ -120,18 +120,18 @@ export default function Dance() {
 		// 传入trackNum，规定滑块在哪条赛道上生成 ,positionNum 规定滑块在赛道上的距离
 		function createBox(trackNum, positionNum) {
 			const newWidth = 12
-			const newHeight = 30
+			const newHeight = 32
 			const newDepth = 5
 			const startY = 297
 			const startZ = 301
 			newSpeed = 324 / 30 / 4
 			const Boxtexture = new THREE.TextureLoader().load("./images/box.png");
 			const trackArr = {
-				"1": -72,
-				"2": -35,
-				"3": 0,
-				"4": 35,
-				"5": 72,
+				"1": -70,
+				"2": -34,
+				"3": 1,
+				"4": 37,
+				"5": 70,
 			}
 
 			const ball4 = new THREE.Mesh(
@@ -167,13 +167,14 @@ export default function Dance() {
 		// 传入赛道编号，生成对应的反馈材质
 		function createCircle(trackNum) {
 			const Btexture = new THREE.TextureLoader().load("./images/circle.png");
-			const circleWidth = 200
-			const circleHeight = 200
+			const circleWidth = 140
+			const circleHeight = 140
 			const trackArr = {
-				"1": -372,
-				"2": -123,
-				"3": 123,
-				"4": 372
+				"1": -380,
+				"2": -193,
+				"3": 0,
+				"4": 193,
+				"5" : 380
 			}
 			const circle = new THREE.Mesh(
 
@@ -197,7 +198,7 @@ export default function Dance() {
 			circle.castShadow = true;
 			circle.position.x = trackArr[trackNum];
 			circle.position.y = -170
-			circle.position.z = 290 * Math.sqrt(3)
+			circle.position.z = 325 * Math.sqrt(3)
 			circle.rotation.z = Math.PI / 2
 			circle.rotation.x = -Math.PI * 1 / 3
 			return circle
@@ -232,17 +233,18 @@ export default function Dance() {
 			scene.add(camera);
 
 
-			createBox(1, 1) 
-			createBox(2, 1)
-			createBox(3, 1)
-			createBox(4, 1)
-			createBox(5, 1)
+			// createBox(1, 1) 
+			// createBox(2, 1)
+			// createBox(3, 1)
+			// createBox(4, 1)
+			// createBox(5, 1)
 
-			 createTrack(-215)
-			 createTrack(-104)
-			 createTrack(0)
-			 createTrack(104)
-			 createTrack(215)
+			//  createTrack(-116)
+			//  createTrack(-58)
+			//  createTrack(0.5)
+			//  createTrack(59)
+			//  createTrack(116)
+			
 
 			
 			// set a default position for the camera
@@ -314,11 +316,11 @@ export default function Dance() {
 			const Ttexture = new THREE.TextureLoader().load("./images/track.png");
 
 			// 创建四个格子点击反馈
-			track = createTrack(-215)
-			track1 = createTrack(-104)
+			track = createTrack(-260)
+			track1 = createTrack(-130)
 			track2 = createTrack(0)
-			track3 = createTrack(104)
-			track4 = createTrack(215)
+			track3 = createTrack(135)
+			track4 = createTrack(262)
 			// // add the sphere to the scene
 
 
@@ -399,7 +401,7 @@ export default function Dance() {
 			circle1 = createCircle(2)
 			circle2 = createCircle(3)
 			circle3 = createCircle(4)
-
+			circle4 = createCircle(5)
 
 
 
@@ -537,7 +539,7 @@ export default function Dance() {
 		let circleAni2 = new Circle(circle1, goodFlagB, timerB)
 		let circleAni3 = new Circle(circle2, goodFlagC, timerC)
 		let circleAni4 = new Circle(circle3, goodFlagD, timerD)
-
+		let circleAni5 = new Circle(circle4, goodFlagE, timerE)
 		function run(ball) {
 
 			// 案件  圆盘变大
@@ -547,7 +549,7 @@ export default function Dance() {
 				circleAni2.circleAni()
 				circleAni3.circleAni()
 				circleAni4.circleAni()
-
+				circleAni5.circleAni()
 
 				if (a.position.y >= -27 - 6 * newSpeed && a.position.y <= -27 + 5 * newSpeed) {
 					if (a.position.y < -27 && a.position.y > -27 - newSpeed) {
@@ -557,52 +559,69 @@ export default function Dance() {
 
 					// 键盘
 
-					if (a.position.x == -64) {
-						circleAni1.showCircle()
+					if (a.position.x == -70) {
+						if (Key.isDown('A')) {
+							circleAni1.showCircle()
+						}
+						
 					}
 
-					if (a.position.x == -22) {
+					if (a.position.x == -34) {
 						if (Key.isDown('S')) {
 							circleAni2.showCircle()
 						} else {
 						}
 					}
 
-					if (a.position.x == 22) {
+					if (a.position.x == 1) {
 						if (Key.isDown('D')) {
 							circleAni3.showCircle()
 						} else {
 						}
 					}
-					if (a.position.x == 64) {
+					if (a.position.x == 37) {
 						if (Key.isDown('F')) {
 							circleAni4.showCircle()
 						} else {
 						}
 					}
+
+					if (a.position.x == 70) {
+						if (Key.isDown('G')) {
+							circleAni5.showCircle()
+						} else {
+						}
+					}
 				}
 				else if (a.position.y < -27 - 6 * newSpeed && a.position.y >= -27 - 9 * newSpeed) {
-					if (a.position.x == -64) {
+					if (a.position.x == -70) {
 
 						
 						circleAni1.showText()
 
 					}
 
-					if (a.position.x == -22) {
+					if (a.position.x == -34) {
 						
 						circleAni2.showText()
 
 					}
 
-					if (a.position.x == 22) {
+					if (a.position.x == 1) {
 
 					
 						circleAni3.showText()
 
 					}
 
-					if (a.position.x == 64) {
+					if (a.position.x == 37) {
+
+						
+						circleAni4.showText()
+
+					}
+
+					if (a.position.x == 70) {
 
 						
 						circleAni4.showText()
@@ -610,47 +629,49 @@ export default function Dance() {
 					}
 				} else if (a.position.y < -27 - 9 * newSpeed && a.position.y > -27 - 10 * newSpeed) {
 
-					if (a.position.x == -64) {
+					if (a.position.x == -70) {
 						// goodFlagA = true
 						circleAni1.flag = true
 						goodNum = 0
 					}
-					if (a.position.x == -22) {
+					if (a.position.x == -34) {
 						// goodFlagB = true
 						circleAni2.flag = true
 					}
-					if (a.position.x == 22) {
+					if (a.position.x == 1) {
 						// goodFlagC = true
 						circleAni3.flag = true
 					}
-					if (a.position.x == 64) {
+					if (a.position.x == 37) {
 						// goodFlagD = true
 						circleAni4.flag = true
+					}
+					if (a.position.x == 70) {
+						// goodFlagD = true
+						circleAni5.flag = true
 					}
 
 				} else if (a.position.y < -27 - 10 * newSpeed) {
 
 					return
 				}
+				
 				a.position.y -= newSpeed;
 				a.position.z += newSpeed * Math.sqrt(3)
+				
 
 			})
 
 			// 键盘
 			if (Key.isDown('A')) {
-				// console.log('AAA')
-
 				track.material.opacity = 1
 
 			} else {
-
 				track.material.opacity = 0
 			}
 
 			if (Key.isDown('S')) {
 				track1.material.opacity = 1
-
 			} else {
 				track1.material.opacity = 0
 			}
@@ -665,6 +686,12 @@ export default function Dance() {
 				track3.material.opacity = 1
 			} else {
 				track3.material.opacity = 0
+			}
+
+			if (Key.isDown('G')) {
+				track4.material.opacity = 1
+			} else {
+				track4.material.opacity = 0
 			}
 		}
 
